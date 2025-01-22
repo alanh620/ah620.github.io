@@ -60,7 +60,7 @@ body{background-color: $background;padding-top:clamp(2rem, 2.5vw, 6rem)}
     label{display: flex;flex-direction: column;}
     input[type="number"]{border-color:$colorThree;border-radius: 5px;padding:2px;background-color:#eee;font-weight: bold;font-size: $fs-regular;}
 
-    span.fa-solid.fa-box-open{font-size: $fs-big;margin: .5rem;
+    i.fa-solid.fa-box-open{font-size: $fs-big;margin: .5rem;
       animation: neat infinite 8s ease;background-size: 400% 100% !important;
       background: -webkit-linear-gradient(0deg, #00f260, #0575e6);
       -webkit-background-clip: text;-webkit-text-fill-color: transparent;
