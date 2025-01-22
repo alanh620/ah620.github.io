@@ -4,6 +4,12 @@ import textfile  from '../constants/foo.json';
 import {CSSTransition} from 'react-transition-group';
 
 
+function roundToTwo(num) {
+    let num2 = Math.round((num + Number.EPSILON) * 100)  / 100
+    let num1 = parseFloat(num2).toFixed(2);
+    return(num1);
+}
+
 
   function Form(){ 
         var increase = 0;
@@ -21,8 +27,7 @@ import {CSSTransition} from 'react-transition-group';
                 "fragile": 0,
                 "standard": 0,
                 "mid": 0
-            }
-        );
+            });
         const [outPutTwo, setoutputTwo] = useState(
             {
                 "postion": "A43",
@@ -56,37 +61,53 @@ import {CSSTransition} from 'react-transition-group';
                 "standard": 0,
                 "mid": 0
             });
-        var results = [];
+        const options = [];   
+        options.push(outPutTwo);
+        options.push(outPutThree);
+        options.push(outPutfour); 
+        let results = [];
         switch(price) {
             case 'custom': increase= 4;break;
             case 'fragile': increase = 2;break;
             case 'standard': increase = 1.5;break;
             case 'basic': increase = 1;break;
-            default : increase = 0;break;}
+            default : increase = 0;break;
+        }
+        //sorts the boxes by volume from smallest to largest 
+        const newData = textfile.sort((a,b)=>( ( a.width * a.height * a.length > b.width * b.height * b.length)) ? 1:-1);
+        
+
         const [show, setShow] = useState(false);
+        const [InvShow, setInventroyShow] = useState(false);
         const handleSubmit = (event) => {
              event.preventDefault();
-             const newData = textfile.sort((a,b)=>(a.width > b.width || a.length > b.length || a.height > b.height) ? 1:-1);  
              const element = newData;
-             var boxSize = [];
-             var x = 0; 
-             var inputArray = [parseInt(inputWidth)-increase,parseInt(inputLength)-increase,parseInt(inputHeight)-increase];
-             var sortedInput =  inputArray.sort((a, b) => b-a);
+             let boxSize = [];
+             let x = 0; 
+             let inputArray = [parseInt(inputWidth)+increase,parseInt(inputLength)+increase,parseInt(inputHeight)+increase];
+             let sortedInput =  inputArray.sort((a, b) => b-a);
+             let results = [];
+             let outPutTwo = {};
+             let outPutThree = {};
+             let outPutfour = {};
+             let options = [];
              for (let index = 0; index < element.length; index++) {
                  boxSize = [element[index].width,element[index].length,element[index].height];
                  let highestToLowest = boxSize.sort((a, b) => b-a);
                  if( highestToLowest[0] >= sortedInput[0] && highestToLowest[1] >= sortedInput[1] && highestToLowest[2] >= sortedInput[2] ){
-                     if(x < 4){results.push(element[index]);x++;}
-                 }
-             }
-             if(results.length == 0){
+                    if(x < 4){results.push(element[index]);x++;}}}
+             if(results.length == 0 || results.length == undefined){
                  return setoutput('No Box was found');
              }else{
                 setoutput(results[0]);
                 setoutputTwo(results[1]);
                 setoutputThree(results[2]);
                 setoutputfour(results[3]);
+                options.push(outPutTwo);
+                options.push(outPutThree);
+                options.push(outPutfour);
              }
+        
           }
        return(
     <div>
@@ -103,64 +124,56 @@ import {CSSTransition} from 'react-transition-group';
                 </label>
             </div>
             <div className="pricing flex justify-center">
-                <h2>Please Pick One To Calculate the Price:</h2>
-                <label>Box Price: 
-                    <input type="radio" name="pricing" value="price" checked={price === 'price'} onChange={(e)=>{setValue(e.target.value)}} />
-                </label>
-                <label>Basic:
-                    <input type="radio" name="pricing" value="basic" checked={price === 'basic'} onChange={(e)=>{setValue(e.target.value)}} />
-                </label>
-                <label>Standard: 
-                    <input type="radio" name="pricing" value="standard" checked={price === 'standard'} onChange={(e)=>{setValue(e.target.value)}} />
-                </label>
-                <label>Fragile: 
-                    <input type="radio" name="pricing" value="fragile" checked={price === 'fragile'} onChange={(e)=>{setValue(e.target.value)}} />
-                </label>
-                <label>Custom: 
-                    <input type="radio" name="pricing" value="custom" checked={price === 'custom'} onChange={(e)=>{setValue(e.target.value)}}/>
-                </label>
+                <h2>Please Select One based on the packaging</h2>
+                <div className="flex justify-center">
+                    <label><b>Box Price </b>
+                        <input type="radio" name="pricing" value="price" checked={price === 'price'} onChange={(e)=>{setValue(e.target.value)}} />
+                    </label>
+                    <label><b>Basic + 1<sub>in</sub></b>
+                        <input type="radio" name="pricing" value="basic" checked={price === 'basic'} onChange={(e)=>{setValue(e.target.value)}} />
+                    </label>
+                    <label><b>Standard + 1.5<sub>in</sub></b>
+                        <input type="radio" name="pricing" value="standard" checked={price === 'standard'} onChange={(e)=>{setValue(e.target.value)}} />
+                    </label>
+                    <label><b>Fragile + 2<sub>in</sub></b> 
+                        <input type="radio" name="pricing" value="fragile" checked={price === 'fragile'} onChange={(e)=>{setValue(e.target.value)}} />
+                    </label>
+                    <label><b>Custom + 4<sub>in</sub></b> 
+                        <input type="radio" name="pricing" value="custom" checked={price === 'custom'} onChange={(e)=>{setValue(e.target.value)}}/>
+                    </label>
+                </div>
             </div>    
             <input type="submit" className="btn" />
         </form>
         <div className="best-fit column-1  md:columns-1">
             <div>
                 <h2>Best Fit</h2>
-                <span><b className='lable'>W: </b>{outputOne.width}</span>
-                <span><b className='lable'>L: </b>{outputOne.length}</span>
-                <span><b className='lable'>H: </b>{outputOne.height}</span>
-                <span><b className='lable'>Price: $ { price === 'custom' ? outputOne.price+outputOne.custom : price === 'fragile' ? outputOne.price+outputOne.fragile : price === 'standard' ? outputOne.price+outputOne.standard : price === 'basic' ? outputOne.price+outputOne.basic : outputOne.price ? outputOne.price : "0.00"}</b></span>
+                <span><b className='lable pl-2'>W: </b>{outputOne.width}</span>
+                <span><b className='lable pl-2'>L: </b>{outputOne.length}</span>
+                <span><b className='lable pl-2'>H: </b>{outputOne.height}</span>
+                <span><b className='lable pl-2'>Price:</b> $ { roundToTwo(price === 'custom' ? outputOne.price: price === 'fragile' ? outputOne.fragile : price === 'standard' ? outputOne.mid : price === 'basic' ? outputOne.standard : outputOne.price ? outputOne.price : 0.00)}</span>
+                <span><b className='lable pl-2'>Postion: </b>{outputOne.postion}</span>
             </div>
         </div>
-        <div className="other-options flex justify-center flex-col">
+        <div className="other-options flex justify-start flex-wrap">
             <button className="btn toggle-more" onClick={() => setShow(currentShow => !currentShow)}>
-            Click Here for More Options<span className="fa-solid fa-truck-ramp-box fa-flip-horizontal fa-bounce"></span>
+            Click Here for More Options {show ? <span className="fa-solid fa-angle-up"></span> : <span className="fa-solid fa-angle-down"></span>}
             </button>
-
             {show ?  <CSSTransition in={show} timeout={350} classNames="test" onEnter={() => setShow(true)} onExited={() => setShow(false)}>
-                <div className="test">
-                    <div className="options flex flex-col justify-center">
-                        <div className="option-2">
-                            <span><b className='lable'>W: </b>{outPutTwo.width}</span>
-                            <span><b className='lable'>L: </b>{outPutTwo.length}</span>
-                            <span><b className='lable'>H: </b>{outPutTwo.height}</span>
-                            <span><b className='lable'>Price: ${outPutTwo.price.toFixed(2)}</b></span>
-                        </div>
-                        <div className="option-3">
-                            <span><b className='lable'>W: </b>{outPutThree.width}</span>
-                            <span><b className='lable'>L: </b>{outPutThree.length}</span>
-                            <span><b className='lable'>H: </b>{outPutThree.height}</span>
-                            <span><b className='lable'>Price: ${outPutThree.price.toFixed(2)}</b></span>
-                        </div>
-                        <div className="option-4">
-                            <span><b className='lable'>W: </b>{outPutfour.width}</span>
-                            <span><b className='lable'>L: </b>{outPutfour.length}</span>
-                            <span><b className='lable'>H: </b>{outPutfour.height}</span>
-                            <span><b className='lable'>Price: ${outPutfour.price.toFixed(2)}</b></span>
-                        </div>
+                <div className="moreOptions-dropdown flex w-full">
+                    <div className="options flex justify-start flex-col w-full">
+                        {options.map((options, index) => (
+                            <div className="option" key={index}>
+                                <span><b className='lable pl-2'>W: </b>{options.width}</span>
+                                <span><b className='lable pl-2'>L: </b>{options.length}</span>
+                                <span><b className='lable pl-2'>H: </b>{options.height}</span>
+                                <span><b className='lable pl-2'>Price: </b>${roundToTwo(options.price)}</span>
+                                <span><b className='lable pl-2'>Postion: </b>{options.postion}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </CSSTransition>
-            :<CSSTransition in={show} timeout={350} classNames="test" onEnter={() => setShow(true)} onExited={() => setShow(false)}><div className="test"></div></CSSTransition> }
+            </CSSTransition>:<CSSTransition in={show} timeout={350} classNames="test" onEnter={() => setShow(true)} onExited={() => setShow(false)}><div className="options"></div></CSSTransition> }
         </div>
     </div>
     )
