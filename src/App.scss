@@ -32,7 +32,7 @@ $fs-vsmall: clamp(.5rem, 1vw, 1rem);
 $fs-small: clamp(0.6rem, 1vw, 1.5rem);
 $fs-regular: clamp(.9rem, 1vw, 2rem);
 $fs-big: clamp(2.5rem, 2vw, 6rem);
-$fs-vbig: clamp(4rem, 2.5vw, 8rem);
+$fs-vbig: clamp(5rem, 2.5vw, 8rem);
 
 @keyframes neat {  
   0% {background-position: 0% 0%;}
@@ -60,11 +60,12 @@ body{background-color: $background;padding-top:clamp(2rem, 2.5vw, 6rem)}
     label{display: flex;flex-direction: column;}
     input[type="number"]{border-color:$colorThree;border-radius: 5px;padding:2px;background-color:#eee;font-weight: bold;font-size: $fs-regular;}
 
-    i.fa-solid.fa-box-open{font-size: $fs-big;margin: .5rem; font-style: normal;
+    i.fa-solid.fa-box-open,.fa-ups{font-size: $fs-vbig;margin:0 .5rem; font-style: normal;
       animation: neat infinite 8s ease;background-size: 400% 100% !important;
       background: -webkit-linear-gradient(0deg, #00f260, #0575e6);
       -webkit-background-clip: text !important;-webkit-text-fill-color: transparent; background-clip:text;
     }
+    p{margin: .5rem 0;}
     h1{ font-size: $fs-big;}
     .SizeInputs,.pricing{width: 100%;}
     .other-options{transition: all .5s ease-in-out;
@@ -185,12 +186,16 @@ b.lable{
 padding: .1em;
 margin-left: .25rem;
 }
-.pricing h2{text-align: center;padding: 30px;}
+.pricing h2{text-align: center;padding: 30px 15px;width: 30%;}
 .pricing label{display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;margin: 10px;}
 .pricing label input{margin-left: 5px;}
+.best-fit,.options{
+   margin: 1rem .25rem; padding: 5px;
+   h2{font-size:$fs-regular;font-weight: $fw-bold;width: 100%;}
+   .fa-box-open{color: $colorThree;font-size: $fs-big;}
+  }
 
-
-
+.option:nth-child(odd) {background:$background}
 .CustomColor{color:$black; fill:$black !important}
 
 .toggle{  height: 100vh; top: 0; display: none !important;}

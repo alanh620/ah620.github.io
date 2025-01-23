@@ -61,10 +61,34 @@ function roundToTwo(num) {
                 "standard": 0,
                 "mid": 0
             });
+        const [outPutfive, setoutputfive] = useState(
+                {
+                    "postion": "A43",
+                    "width": 0,
+                    "length": 0,
+                    "height": 0,
+                    "price": 0,
+                    "fragile": 0,
+                    "standard": 0,
+                    "mid": 0
+                });
+        const [outPutsix, setoutputsix] = useState(
+                    {
+                        "postion": "A43",
+                        "width": 0,
+                        "length": 0,
+                        "height": 0,
+                        "price": 0,
+                        "fragile": 0,
+                        "standard": 0,
+                        "mid": 0
+                    });
         const options = [];   
         options.push(outPutTwo);
         options.push(outPutThree);
         options.push(outPutfour); 
+        options.push(outPutfive);
+        options.push(outPutsix);
         let results = [];
         switch(price) {
             case 'custom': increase= 4;break;
@@ -95,7 +119,7 @@ function roundToTwo(num) {
                  boxSize = [element[index].width,element[index].length,element[index].height];
                  let highestToLowest = boxSize.sort((a, b) => b-a);
                  if( highestToLowest[0] >= sortedInput[0] && highestToLowest[1] >= sortedInput[1] && highestToLowest[2] >= sortedInput[2] ){
-                    if(x < 4){results.push(element[index]);x++;}}}
+                    if(x < 6){results.push(element[index]);x++;}}}
              if(results.length == 0 || results.length == undefined){
                  return setoutput('No Box was found');
              }else{
@@ -103,9 +127,13 @@ function roundToTwo(num) {
                 setoutputTwo(results[1]);
                 setoutputThree(results[2]);
                 setoutputfour(results[3]);
+                setoutputfive(results[4]);
+                setoutputsix(results[5]);
                 options.push(outPutTwo);
                 options.push(outPutThree);
                 options.push(outPutfour);
+                options.push(outPutfive);
+                options.push(outPutsix);
              }
         
           }
@@ -125,7 +153,7 @@ function roundToTwo(num) {
             </div>
             <div className="pricing flex justify-center">
                 <h2>Please Select One based on the packaging</h2>
-                <div className="flex justify-center">
+                <div className="flex justify-center flex-wrap">
                     <label><b>Box Price </b>
                         <input type="radio" name="pricing" value="price" checked={price === 'price'} onChange={(e)=>{setValue(e.target.value)}} />
                     </label>
@@ -143,11 +171,11 @@ function roundToTwo(num) {
                     </label>
                 </div>
             </div>    
-            <input type="submit" className="btn" />
+            <input type="submit" className="btn"/>
         </form>
         <div className="best-fit column-1  md:columns-1">
-            <div>
-                <h2>Best Fit</h2>
+            <div className="flex flex-wrap content-center">
+                <h2>Best Fit:</h2><span className="fa-solid fa-box-open"></span>
                 <span><b className='lable pl-2'>W: </b>{outputOne.width}</span>
                 <span><b className='lable pl-2'>L: </b>{outputOne.length}</span>
                 <span><b className='lable pl-2'>H: </b>{outputOne.height}</span>
@@ -155,9 +183,9 @@ function roundToTwo(num) {
                 <span><b className='lable pl-2'>Postion: </b>{outputOne.postion}</span>
             </div>
         </div>
-        <div className="other-options flex justify-start flex-wrap">
+        <div className="other-options flex justify-center flex-wrap">
             <button className="btn toggle-more" onClick={() => setShow(currentShow => !currentShow)}>
-            Click Here for More Options {show ? <span className="fa-solid fa-angle-up"></span> : <span className="fa-solid fa-angle-down"></span>}
+            Click Here for More Options <span className="fa-solid fa-dolly fa-bounce"></span>
             </button>
             {show ?  <CSSTransition in={show} timeout={350} classNames="test" onEnter={() => setShow(true)} onExited={() => setShow(false)}>
                 <div className="moreOptions-dropdown flex w-full">
