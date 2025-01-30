@@ -92,9 +92,9 @@ function roundToTwo(num) {
         let results = [];
         switch(price) {
             case 'custom': increase= 4;break;
-            case 'fragile': increase = 2;break;
-            case 'standard': increase = 1.5;break;
-            case 'basic': increase = 1;break;
+            case 'fragile': increase = 4;break;
+            case 'standard': increase = 2;break;
+            case 'basic': increase = 0;break;
             default : increase = 0;break;
         }
         //sorts the boxes by volume from smallest to largest 
@@ -154,19 +154,19 @@ function roundToTwo(num) {
             <div className="pricing flex justify-center">
                 <h2>Please Select One based on the packaging</h2>
                 <div className="flex justify-center flex-wrap">
-                    <label><b>Box Price </b>
-                        <input type="radio" name="pricing" value="price" checked={price === 'price'} onChange={(e)=>{setValue(e.target.value)}} />
+                    <label className="hidden"><b>Box Price </b>
+                    <input type="radio" name="pricing" value="price" checked={price === 'price'} onChange={(e)=>{setValue(e.target.value)}} />
                     </label>
-                    <label><b>Basic + 1<sub>in</sub></b>
+                    <label><b>Basic + 0<sub>in</sub></b>
                         <input type="radio" name="pricing" value="basic" checked={price === 'basic'} onChange={(e)=>{setValue(e.target.value)}} />
                     </label>
-                    <label><b>Standard + 1.5<sub>in</sub></b>
+                    <label><b>Standard + 2<sub>in</sub></b>
                         <input type="radio" name="pricing" value="standard" checked={price === 'standard'} onChange={(e)=>{setValue(e.target.value)}} />
                     </label>
-                    <label><b>Fragile + 2<sub>in</sub></b> 
+                    <label><b>Fragile + 4<sub>in</sub></b> 
                         <input type="radio" name="pricing" value="fragile" checked={price === 'fragile'} onChange={(e)=>{setValue(e.target.value)}} />
                     </label>
-                    <label><b>Custom + 4<sub>in</sub></b> 
+                    <label className="hidden"><b>Custom + 4<sub>in</sub></b> 
                         <input type="radio" name="pricing" value="custom" checked={price === 'custom'} onChange={(e)=>{setValue(e.target.value)}}/>
                     </label>
                 </div>

@@ -57,7 +57,7 @@ $fs-vbig: clamp(5rem, 2.5vw, 8rem);
   
 body{background-color: $background;padding-top:clamp(2rem, 2.5vw, 6rem)}
 .App{ padding:clamp(2rem, 2.5vw, 6rem) 15px 10px 15px;background-color:#fff;width:50%;margin:auto;border-radius:50px;border:solid 2px $colorThree;
-    label{display: flex;flex-direction: column;}
+    .SizeInputs label{display: flex;flex-direction: column;}
     input[type="number"]{border-color:$colorThree;border-radius: 5px;padding:2px;background-color:#eee;font-weight: bold;font-size: $fs-regular;}
 
     i.fa-solid.fa-box-open,.fa-ups{font-size: $fs-vbig;margin:0 .5rem; font-style: normal;
@@ -187,7 +187,7 @@ padding: .1em;
 margin-left: .25rem;
 }
 .pricing h2{text-align: center;padding: 30px 15px;width: 30%;}
-.pricing label{display: flex;justify-content: center;align-items: center;flex-wrap: nowrap;margin: 10px;}
+.pricing label{justify-content: center;align-items: center;flex-wrap: nowrap;margin: 10px;}
 .pricing label input{margin-left: 5px;}
 .best-fit,.options{
    margin: 1rem .25rem; padding: 5px;
@@ -202,4 +202,16 @@ margin-left: .25rem;
 nav > div {flex-direction: column;}
 
 nav ul{display: flex;flex-direction: column;}
+
+@media screen and (max-width:1200px) {
+  .App{width: 80%;}
+  
+}
+
+@media screen and (max-width:768px){
+  .pricing{ flex-direction: column; align-items: center;
+    div{flex-direction: column;}
+  }
+  .SizeInputs{flex-direction: column;}
+}
 
