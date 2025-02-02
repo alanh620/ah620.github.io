@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
-import textfile  from '../constants/foo.json';
+import textfile  from '../constants/newboxlist.json';
 import {CSSTransition} from 'react-transition-group';
 
 
@@ -26,7 +26,7 @@ function roundToTwo(num) {
                 "price": 0,
                 "fragile": 0,
                 "standard": 0,
-                "mid": 0
+                "basic": 0
             });
         const [outPutTwo, setoutputTwo] = useState(
             {
@@ -37,7 +37,7 @@ function roundToTwo(num) {
                 "price": 0,
                 "fragile": 0,
                 "standard": 0,
-                "mid": 0
+                "basic": 0
             });
         const [outPutThree, setoutputThree] = useState(
             {
@@ -48,7 +48,7 @@ function roundToTwo(num) {
                 "price": 0,
                 "fragile": 0,
                 "standard": 0,
-                "mid": 0
+                "basic": 0
             });
         const [outPutfour, setoutputfour] = useState(
             {
@@ -179,7 +179,10 @@ function roundToTwo(num) {
                 <span><b className='lable pl-2'>W: </b>{outputOne.width}</span>
                 <span><b className='lable pl-2'>L: </b>{outputOne.length}</span>
                 <span><b className='lable pl-2'>H: </b>{outputOne.height}</span>
-                <span><b className='lable pl-2'>Price:</b> $ { roundToTwo(price === 'custom' ? outputOne.price: price === 'fragile' ? outputOne.fragile : price === 'standard' ? outputOne.mid : price === 'basic' ? outputOne.standard : outputOne.price ? outputOne.price : 0.00)}</span>
+                <span><b className='lable pl-2'>Price:</b> $ { roundToTwo( 
+                                    price === 'fragile' ? outputOne.fragile : 
+                                    price === 'standard' ? outputOne.standard : 
+                                    price === 'basic' ? outputOne.basic : 0.00)}</span>
                 <span><b className='lable pl-2'>Postion: </b>{outputOne.postion}</span>
             </div>
         </div>
@@ -192,10 +195,15 @@ function roundToTwo(num) {
                     <div className="options flex justify-start flex-col w-full">
                         {options.map((options, index) => (
                             <div className="option" key={index}>
+                                {console.log(options)}
                                 <span><b className='lable pl-2'>W: </b>{options.width}</span>
                                 <span><b className='lable pl-2'>L: </b>{options.length}</span>
                                 <span><b className='lable pl-2'>H: </b>{options.height}</span>
-                                <span><b className='lable pl-2'>Price: </b>${roundToTwo(options.price)}</span>
+                                <span><b className='lable pl-2'>Price: </b>{ roundToTwo( 
+                                    price === 'fragile' ? options.fragile : 
+                                    price === 'standard' ? options.standard : 
+                                    price === 'basic' ? options.basic : 0.00)}
+                                </span>
                                 <span><b className='lable pl-2'>Postion: </b>{options.postion}</span>
                             </div>
                         ))}
