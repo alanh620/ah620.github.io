@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Navbar from 'src/components/navbar.js';
+import Navbar from '../src/components/navbar.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './pages/about.js';
 import Wide from '../src/pages/wide.js'
