@@ -5,15 +5,15 @@ import './index.css'
 import './App.scss'
 import Home from './pages';
 import Test from '../src/pages/test';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 
 ReactDOM.render(
 <React.StrictMode>
-	<HashRouter>
+	<BrowserRouter basename="/ah620.github.io">
 	<App />
 	<Home />
-	</HashRouter>
+	</BrowserRouter>
 </React.StrictMode>,
 document.getElementById('root')
 );
