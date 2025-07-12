@@ -3,8 +3,8 @@ import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from './NavbarElements';
 
 
 const nav = [
-	{name:'Home',link:"/ah620.github.io/"},
-	{name:'Wide',link:"/ah620.github.io/wide"},
+	{name:'Home',link:"/"},
+	{name:'Wide',link:"/wide"},
 ]
 
 
