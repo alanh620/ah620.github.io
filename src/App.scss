@@ -61,13 +61,13 @@ nav{background-color: transparent !important;width:50%;margin:auto;
         margin: auto!important;
         flex-direction: row!important;
         align-items: center!important;
-        a{padding:1rem;border:solid 2px transparent;border-bottom-style: none!important;border-top-left-radius:15px;
-            border-top-right-radius: 15px;}
+        a{padding:1rem!important;border:solid 2px transparent!important;border-bottom-style: none!important;border-top-left-radius:15px!important;
+            border-top-right-radius: 15px!important;}
         a:hover,::after,:focus:active{
-           border:solid 2px $colorThree;border-bottom-style: none!important;
+           border:solid 2px $colorThree!important;border-bottom-style: none!important;
         }
         a .active{
-          border:solid 2px $colorThree;border-bottom-style: none!important;
+          border:solid 2px $colorThree!important;border-bottom-style: none!important;
         }
       
       

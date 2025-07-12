@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './pages/about.js';
 import Wide from '../src/pages/wide.js'
 import Home from './pages';
+
 function App() {
   return (
-      <Router>
+     
+      <Router basename="/ah620.github.io">
         <Navbar />
         <Routes>
           <Route path="/" element={ <Home /> } />
@@ -14,6 +16,7 @@ function App() {
           <Route path="/about" element={ <About /> } />
         </Routes>
       </Router>
+  
    );
 }
 
