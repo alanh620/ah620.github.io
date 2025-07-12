@@ -195,7 +195,6 @@ function roundToTwo(num) {
                     <div className="options flex justify-start flex-col w-full">
                         {options.map((options, index) => (
                             <div className="option" key={index}>
-                                {console.log(options)}
                                 <span><b className='lable pl-2'>W: </b>{options.width}</span>
                                 <span><b className='lable pl-2'>L: </b>{options.length}</span>
                                 <span><b className='lable pl-2'>H: </b>{options.height}</span>

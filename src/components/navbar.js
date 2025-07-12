@@ -1,46 +1,28 @@
 import React, {useState} from "react";
 import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from './NavbarElements';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import ReactDOM from "react-dom";
-import {CSSTransition} from 'react-transition-group';
 
 
 const nav = [
-	{name:'Demo',link:'test'},
-	{name:'About Me',link:'about', 
-	submenu:[
-		{name:'education',link:'#education'},
-		{name:'protfolio',link:'#protfolio'}
-	]}
+	{name:'Home',link:'/'},
+	{name:'Wide',link:'wide'},
 ]
 
 
-function NavToggle() {
-	const [toggle, setToggle] = useState(true);
-	const [submenu, setsubmenu] = useState();
-	
-
+function navbar(){
 
 	return (
-		<div class='toggle'>
-		<span onClick={() => setToggle(!toggle)}>
-			{toggle ? <FontAwesomeIcon icon={faTimes} />:
-			<FontAwesomeIcon icon={faBars} />
-			}
-		</span>
-		{toggle ? <CSSTransition in={toggle} timeout={350} classNames="slide" onEnter={() => setToggle(true)} onExited={() => setToggle(false)}>
+	
 		<Nav class='nav_container'>
 			<NavMenu>
-			{nav.map(nav => (
+			{nav.map(navItem => ( // Renamed 'nav' to 'navItem' for clarity
 				<>
-				<NavLink to={nav.link} activeStyle>
-					{nav.name}
+				{/* Apply the 'end' prop to the NavLink for the home page */}
+				<NavLink to={navItem.link} key={navItem.name} end={navItem.link === '/'}>
+					{navItem.name}
 				</NavLink>
-					{ nav.submenu !== undefined ?
+					{ navItem.submenu !== undefined ? // Changed 'nav.submenu' to 'navItem.submenu'
 						<ul>
-						{nav.submenu.map((submenu) => (
+						{navItem.submenu.map((submenu) => ( // Changed 'nav.submenu' to 'navItem.submenu'
 							<NavLink to={submenu.link} activeStyle>
 							{submenu.name}
 							</NavLink>
@@ -51,14 +33,7 @@ function NavToggle() {
 			))}
 			</NavMenu>
 		</Nav>
-		</CSSTransition>
-		:<CSSTransition in={toggle} timeout={350} classNames="slide" onEnter={() => setToggle(true)} onExited={() => setToggle(false)}><div className="slide"></div></CSSTransition> }
-
-	</div>
 	);
 }
 
-
-
-
-export default NavToggle;
+	export default navbar
