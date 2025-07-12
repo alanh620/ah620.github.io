@@ -1,8 +1,8 @@
 {
-  "homepage": "https://alanh620.github.io/",
+  "homepage": "https://alanh620.github.io/ah620.github.io",
   "name": "my-app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

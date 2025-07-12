@@ -56,20 +56,25 @@ $fs-vbig: clamp(5rem, 2.5vw, 8rem);
   }
 
 nav{background-color: transparent !important;width:50%;margin:auto;
-  .sc-hLBbgP.itsIjC{    display: flex;
-        width: 75%;
-        margin: auto;
-        flex-direction: row;
-        align-items: center;}
-  }  
-  a.sc-gswNZR.iCBVMu{padding:1rem;border:solid 2px transparent;border-bottom-style: none!important;border-top-left-radius:15px;
-    border-top-right-radius: 15px;}
-  a.sc-gswNZR.iCBVMu:hover,::after,:focus:active{
-    border:solid 2px $colorThree;border-bottom-style: none!important;
-  }
-  a.sc-gswNZR.iCBVMu.active{
-    border:solid 2px $colorThree;border-bottom-style: none!important;
-  }
+  div{    display: flex!important;
+        width: 75%!important;
+        margin: auto!important;
+        flex-direction: row!important;
+        align-items: center!important;
+        a{padding:1rem;border:solid 2px transparent;border-bottom-style: none!important;border-top-left-radius:15px;
+            border-top-right-radius: 15px;}
+        a:hover,::after,:focus:active{
+           border:solid 2px $colorThree;border-bottom-style: none!important;
+        }
+        a .active{
+          border:solid 2px $colorThree;border-bottom-style: none!important;
+        }
+      
+      
+      }
+   
+
+}
   
 body{background-color: $background;padding-top:10px}
 .App{ padding:clamp(2rem, 2.5vw, 6rem) 15px 10px 15px;background-color:#fff;width:50%;margin:auto;border-radius:50px;border:solid 2px $colorThree;

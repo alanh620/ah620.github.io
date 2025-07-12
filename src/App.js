@@ -9,9 +9,9 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={ <Home /> } />
-          <Route path="/wide" element={ <Wide /> } />
-          <Route path="/about" element={ <About /> } />
+          <Route path="/ah620.github.io/" element={ <Home /> } />
+          <Route path="/ah620.github.io/wide" element={ <Wide /> } />
+          <Route path="/ah620.github.io//about" element={ <About /> } />
         </Routes>
       </Router>
    );
