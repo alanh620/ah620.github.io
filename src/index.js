@@ -12,7 +12,6 @@ ReactDOM.render(
 <React.StrictMode>
 	<BrowserRouter basename="/ah620.github.io">
 	<App />
-	<Home />
 	</BrowserRouter>
 </React.StrictMode>,
 document.getElementById('root')
