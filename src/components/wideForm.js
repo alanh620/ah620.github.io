@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 const printPrices = [
-    { name: 'Glossy', price: 8.00 },
-    { name: 'Heavy Bond', price: 8.00 },
-    { name: 'Matt Canvas', price: 10.00 },
-    { name: 'Regular Bond', price: 3.52 },
-    { name: 'Banner', price: 10.00 },
-    { name: 'Foambord', price:3.50},
-    { name: 'Print & Stick',price:12.00}
+    { name: 'Glossy', price: 6.00 },
+    { name: 'Matt', price: 6.00 },
+    { name: 'Canvas', price: 10.25 },
+    { name: 'Regular Bond', price: 1.75 },
+    { name: 'Banner', price: 10.25 },
+    { name: 'Foambord', price:15.75},
 ];
 
 const goframes = [
-    {name: 36, price:70.92/8},
-    {name: 24, price:48.76/8},
-    {name: 20, price:40.28/8},
-    {name: 18, price:37.23/8},
+    {name: 36, price:85/8},
+    {name: 24, price:73/8},
+    {name: 20, price:60/8},
+    {name: 18, price:56/8},
 ] 
 
 function roundToTwo(num) {
@@ -26,12 +25,11 @@ function roundToTwo(num) {
 function Wideform() {
     const [options, setOptions] = useState([
         { 'name': 'Glossy', 'total': 0.00 },
-        { 'name': 'Heavy Bond', 'total': 0.00 },
-        { 'name': 'Matt Canvas', 'total': 0.00 },
+        { 'name': 'Matt', 'total': 0.00 },
+        { 'name': 'Canvas', 'total': 0.00 },
         { 'name': 'Regular Bond', 'total': 0.00 },
         { 'name': 'Banner', 'total': 0.00 },
         { 'name': 'Foambord', 'total':0.00},
-        { 'name': 'Print & Stick','total':0.00}
     ]);
 
     const [inputWidth, setWidth] = useState("");
@@ -108,7 +106,7 @@ const handleCheckboxChange = (event) => {
     }
 };
 // Determine if the checkbox should be disabled
-const isGoframeCheckboxDisabled = paperType !== "Matt Canvas";
+const isGoframeCheckboxDisabled = paperType !== "Canvas";
 
 return (
         <form onSubmit={handleSubmit} className="flex col-span-2 justify-center flex-wrap">
@@ -163,7 +161,7 @@ return (
                         <span><label>{option.name}</label>: ${parseFloat(option.total).toFixed(2)}</span>
                         {isChecked && (
                             <p> <span><label>Go frame Price:</label> ${goframePrice}</span></p>)}
-                        {paperType == "Matt Canvas" && (
+                        {paperType == "Canvas" && (
                             <span><label>Total Canvas Wrap Price:</label> ${roundToTwo(totalCanvasWrapPrice)}</span>)}
                         </p>
                         );
